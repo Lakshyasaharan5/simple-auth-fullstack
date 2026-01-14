@@ -26,7 +26,7 @@ function LoginForm() {
       username: form.username,
       password: form.password,
     };
-
+    
     const response = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -45,7 +45,7 @@ function LoginForm() {
     console.log("Logged in:", data);
     
     localStorage.setItem("token", data.token);
-    login(data.user);      // store user in auth state
+    login(data.user);      
     navigate("/dashboard");
   }
 

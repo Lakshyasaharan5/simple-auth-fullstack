@@ -19,14 +19,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("token");
     setUser(null);
   }
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      // temporary: trust token presence
-      setUser({ id: "unknown", username: "restored" });
-    }
-  }, []);
-  
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

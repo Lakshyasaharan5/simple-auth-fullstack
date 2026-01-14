@@ -5,6 +5,7 @@ import { FormHeading } from "../components/FormHeading";
 import { InputField } from "../components/InputField";
 import { Card } from "../components/Card";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function RegisterForm() {
     const [form, setForm] = useState({
@@ -20,17 +21,25 @@ function RegisterForm() {
             password: form.password,
         };
 
-        const response = await fetch("http://localhost:3000/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-        });
+        axios.post("http://localhost:3000/register", payload)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
-        const data: RegisterResponse = await response.json();
+        // const response = await fetch("http://localhost:3000/register", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(payload),
+        // });
 
-        console.log("Logged in:", data);
+        // const data: RegisterResponse = await response.json();
+
+        // console.log("Logged in:", data);
     }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
