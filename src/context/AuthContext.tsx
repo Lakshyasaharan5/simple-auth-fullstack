@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { AuthUser } from "../types/auth";
 
 interface AuthContextType {
@@ -15,10 +15,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   function login(user: AuthUser) {
     setUser(user);
   }
-
   function logout() {
+    localStorage.removeItem("token");
     setUser(null);
   }
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // temporary: trust token presence
+      setUser({ id: "unknown", username: "restored" });
+    }
+  }, []);
+  
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

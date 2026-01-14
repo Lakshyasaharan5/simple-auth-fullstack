@@ -24,3 +24,8 @@ export interface AuthUser {
     id: string;
     username: string;
 }
+
+export interface User {
+    id: string;
+    username: string;
+}

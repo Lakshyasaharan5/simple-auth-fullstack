@@ -43,7 +43,8 @@ function LoginForm() {
     }
     
     console.log("Logged in:", data);
-
+    
+    localStorage.setItem("token", data.token);
     login(data.user);      // store user in auth state
     navigate("/dashboard");
   }
